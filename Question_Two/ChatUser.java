@@ -82,7 +82,7 @@ public class ChatUser implements ActionListener{
         }
     }
 
-    public void SetHandler(Subject sub) {
+    public void SetSubject(Subject sub) {
         sb = sub;
     }
 
