@@ -18,7 +18,7 @@ public class ChatUser implements ActionListener{
     private JTextField userfield;
     private JPanel userPanel;
     private JTextPane textArea;
-    // private handler hd; FIXME
+    private Subject sb;
 
     public ChatUser(int User_id) {
         this.user_id = User_id;
@@ -67,17 +67,71 @@ public class ChatUser implements ActionListener{
 
         //checkrep FIXME
     }
-s
+
     public void actionPerformed (ActionEvent event) {
         String pre = "student " + user_id + ": ";
         if (pre.equals(event.getActionCommand())) {
             JTextField source = (JTextField)event.getSource();
-            // hd.PrintMassege(pre + source.getText(), user_id);  FIXME
+            try {
+                sb.PrintChatMSG(pre + source.getText(), user_id);
+            }
+
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void SetHandler() {
-        // FIXME
+    public void SetHandler(Subject sub) {
+        sb = sub;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public JLabel getActionLabel() {
+        return actionLabel;
+    }
+
+    public void setActionLabel(JLabel actionLabel) {
+        this.actionLabel = actionLabel;
+    }
+
+    public JLabel getUserLabel() {
+        return userLabel;
+    }
+
+    public void setUserLabel(JLabel userLabel) {
+        this.userLabel = userLabel;
+    }
+
+    public JTextField getUserfield() {
+        return userfield;
+    }
+
+    public void setUserfield(JTextField userfield) {
+        this.userfield = userfield;
+    }
+
+    public JPanel getUserPanel() {
+        return userPanel;
+    }
+
+    public void setUserPanel(JPanel userPanel) {
+        this.userPanel = userPanel;
+    }
+
+    public JTextPane getTextArea() {
+        return textArea;
+    }
+
+    public void setTextArea(JTextPane textArea) {
+        this.textArea = textArea;
     }
 
 }
