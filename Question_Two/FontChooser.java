@@ -1,10 +1,11 @@
 package Question_Two;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.GridLayout;
 import java.util.List;
+import java.awt.Dimension;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,11 +13,21 @@ import javax.swing.JPanel;
 
 
 public class FontChooser implements ActionListener{
+
+    // Abstraction Function:
+    //  FontChooser FC will implement the interface ActionListener,
+    //  once an event was triggred this class will change the Font according to the type of the event
+    // Representation Invariant:
+    //  Fonts_btn != null && font != null && ChatUsers != null && btnPanel != null
+
     private ButtonGroup Fonts_btn;
     private Fontable font;
     private List<ChatUser> ChatUsers;
     private JPanel btnPanel;
 
+	/**
+     * Constructs a new FontChooser
+     **/
     public FontChooser(List<ChatUser> users) {
         ChatUsers = users;
         Fonts_btn = new ButtonGroup();
@@ -46,10 +57,18 @@ public class FontChooser implements ActionListener{
         btnPanel.add(Plain_btn);
         btnPanel.add(Bold_btn);
         btnPanel.add(Sans_btn);
+
+        checkRep();
     }
 
+
+	/**
+     * this method is invoked when an event occured
+     * @Modifies: this.dont to the corruspanding Font style that was chosen 
+     **/
     @Override
     public void actionPerformed(ActionEvent e) {
+        checkRep();
         String Command = e.getActionCommand();
         if (Command.equals("PLAIN")) {
             font = new PlainFont();
@@ -64,21 +83,22 @@ public class FontChooser implements ActionListener{
         }
 
         font.ChangeFont(ChatUsers);
-    }
-
-    public ButtonGroup getFonts_btn() {
-        return Fonts_btn;
-    }
-
-    public void setFonts_btn(ButtonGroup fonts_btn) {
-        Fonts_btn = fonts_btn;
+        checkRep();
     }
 
     public JPanel getBtnPanel() {
+        checkRep();
         return btnPanel;
     }
 
-    public void setBtnPanel(JPanel btnPanel) {
-        this.btnPanel = btnPanel;
+    private void checkRep() {
+        assert (Fonts_btn != null): 
+        "Error Fonts_btn";
+        assert (font != null): 
+        "Error font";
+        assert (ChatUsers != null): 
+        "Error ChatUsers";
+        assert (btnPanel != null): 
+        "Error btnPanel";
     }
 }

@@ -6,6 +6,11 @@ import java.util.List;
 import javax.swing.JTextPane;
 
 public class BoldFont implements Fontable {
+
+  	/**
+     * Change the font of each user to BoldFont.
+     * @modifies ChatUsers     
+     **/
     @Override
     public void ChangeFont(List<ChatUser> ChatUsers) {
         for (ChatUser U : ChatUsers) {

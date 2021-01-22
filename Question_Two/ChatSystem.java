@@ -6,14 +6,29 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class ChatSystem {
+    // Abstraction Function:
+    //  ChatSystem CS is an interactive chat platform which conatins
+    //  users of the chat and buttons for modifing the chat text
+    // Representation Invariant:
+    //  chatUsers != null
     List<ChatUser> chatUsers;
 
+	/**
+   	 * Constructs a new ChatSystem.
+      * @effects Constructs a new ChatSystem.
+      **/ 
     public ChatSystem () {
         chatUsers = new ArrayList<ChatUser>();
+        checkRep();
     }
 
+	/**
+   	 * Constructs a new ChatSystem and assign users to this Chatuser list.
+      * @effects Constructs a new ChatSystem.
+      **/ 
     public ChatSystem (List<ChatUser> users) {
         chatUsers = new ArrayList<ChatUser>(users);
+        checkRep();
     }
 
     public static void main(String[] args) {
@@ -48,5 +63,9 @@ public class ChatSystem {
         chatFrame.revalidate();
         chatFrame.repaint();
         chatFrame.setVisible(true);
+    }
+
+    private void checkRep() {
+        assert (chatUsers != null): "ERROR chatUsers";
     }
 }
